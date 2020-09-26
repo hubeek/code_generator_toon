@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="box column is-one-third">
+      <h1 class="title has-text-centered">Toon Code Generator</h1>
+
+      <div class="field">
+        <label>Type message</label>
+        <input class="input" (input)="onChangeMessage($event.target.value)" />
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input (change)="onChangedoEncoding()" type="checkbox" />
+            Decode
+          </label>
+        </div>
+      </div>
+
+      <button [disabled]="
+          !(message )
+        " (click)="onButtonClick()" class="button is-link is-fullwidth">
+        Generate!
+      </button>
+
+      <div *ngIf="processedMessage" class="box">
+        <label>Your Message</label>
+        <input class="input" [value]="processedMessage" />
+      </div>
+    </div>
+  </div>
+</div>
