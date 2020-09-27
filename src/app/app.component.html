@@ -5,7 +5,10 @@
 
       <div class="field">
         <label>Type message</label>
-        <input class="input" (input)="onChangeMessage($event.target.value)" />
+        <input class="input"
+               (input)="onChangeMessage($event.target.value)"
+               cols="40" rows="5"
+        />
       </div>
 
       <div class="field">
@@ -26,6 +29,8 @@
       <div *ngIf="processedMessage" class="box">
         <label>Your Message</label>
         <input class="input" [value]="processedMessage" />
+        <label for="">Other encoding</label>
+        <input class="input" [value]="otherEncodedMessage">
       </div>
     </div>
   </div>

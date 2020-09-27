@@ -11,9 +11,12 @@ export class AppComponent {
   processedMessage = '';
   doEncode = true;
   encodedMessage = '';
+  otherEncodedMessage: string;
 
   onButtonClick = () => {
     this.doEncoding();
+    this.doOtherEncoding();
+    console.log(this.otherEncodedMessage);
   };
 
   doEncoding(): void {
@@ -42,19 +45,38 @@ export class AppComponent {
         const firstChar = chunkedFirst.charAt(0);
         const secondChar = chunkedSecond.charAt(0);
         this.processedMessage = `${this.processedMessage}${firstChar}${secondChar}`;
-        chunkedFirst =  chunkedFirst.substr(1);
+        chunkedFirst = chunkedFirst.substr(1);
         chunkedSecond = chunkedSecond.substr(1);
         console.log(chunkedFirst);
         console.log(chunkedSecond);
       }
       if (chunkedFirst !== '') {
-        this.processedMessage = `${this.processedMessage}${chunkedFirst}`
+        this.processedMessage = `${this.processedMessage}${chunkedFirst}`;
       }
     }
   }
 
-  chunkString(str, length): string {
+  chunkString(str, length): string[] {
     return str.match(new RegExp('.{1,' + length + '}', 'g'));
+  }
+
+  // 'ditiseentestberichtvoortoon'
+  // 'debtoinevottronieio sscr etht '
+  doOtherEncoding(): void {
+    this.otherEncodedMessage = '';
+    const chunked: string[] = this.chunkString(this.message, 6);
+    const chunks = chunked.length;
+    console.log(chunked);
+    for (let i = 0; i < 6; i++) {
+      chunked.forEach((word, index) => {
+        let letter = word[i];
+        if (letter === undefined || letter === null) {
+          letter = ' ';
+        }
+        this.otherEncodedMessage = `${this.otherEncodedMessage}${letter}`;
+        console.log(`${index} ${word} ${letter} ${this.otherEncodedMessage}`);
+      });
+    }
   }
 
   onChangedoEncoding(): void {

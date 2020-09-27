@@ -1,5 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {AppComponent} from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -19,15 +19,19 @@ describe('AppComponent', () => {
   it(`should have hallo ik ben toon`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    app.message = 'halloikbentoon'
-    app.doEncoding()
-    expect(app.encodedMessage).toEqual('hloketoalibnon');
+    app.message = 'halloikbentoon';
+    app.doEncoding();
+    console.log(app.processedMessage);
+    expect(app.processedMessage).toEqual('hloketoalibnon');
   });
 
-  it('should render title', () => {
+  it(`should have ditiseentestberichtvoortoon in other encoding`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('pw app is running!');
+    const app = fixture.componentInstance;
+    app.message = 'ditiseentestberichtvoortoon';
+    app.doOtherEncoding();
+    expect(app.otherEncodedMessage).toEqual('debtoinevottronieio sscr etht ');
   });
+
+
 });
