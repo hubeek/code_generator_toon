@@ -16,10 +16,12 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pw'`, () => {
+  it(`should have hallo ik ben toon`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pw');
+    app.message = 'halloikbentoon'
+    app.doEncoding()
+    expect(app.encodedMessage).toEqual('hloketoalibnon');
   });
 
   it('should render title', () => {
