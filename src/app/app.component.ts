@@ -64,18 +64,40 @@ export class AppComponent {
   // 'debtoinevottronieio sscr etht '
   doOtherEncoding(): void {
     this.otherEncodedMessage = '';
-    const chunked: string[] = this.chunkString(this.message, 6);
-    const chunks = chunked.length;
-    console.log(chunked);
-    for (let i = 0; i < 6; i++) {
-      chunked.forEach((word, index) => {
-        let letter = word[i];
-        if (letter === undefined || letter === null) {
+    if (this.doEncode) {
+      const chunked: string[] = this.chunkString(this.message, 6);
+      const chunks = chunked.length;
+      for (let i = 0; i < 6; i++) {
+        chunked.forEach((word, index) => {
+          let letter = word[i];
+          if (letter === undefined || letter === null) {
+            letter = ' ';
+          }
+          this.otherEncodedMessage = `${this.otherEncodedMessage}${letter}`;
+        });
+      }
+    } else {
+      let tempArray: any = [];
+      let incommingMessage = this.message;
+      const numArrays = Math.round(this.message.length / 6);
+      console.log(numArrays);
+      let counter = 0;
+      while (incommingMessage !== '') {
+        let letter = incommingMessage.charAt(0);
+        if (tempArray[counter] === null || tempArray[counter] === undefined) {
+          tempArray[counter] = '';
+        }
+        if (letter === null || letter === undefined) {
           letter = ' ';
         }
-        this.otherEncodedMessage = `${this.otherEncodedMessage}${letter}`;
-        console.log(`${index} ${word} ${letter} ${this.otherEncodedMessage}`);
-      });
+        tempArray[counter] = `${tempArray[counter]}${letter}`;
+        incommingMessage = incommingMessage.substr(1);
+        if (counter < numArrays) {
+          counter = 0;
+        }
+      }
+      console.log(tempArray);
+      this.otherEncodedMessage = tempArray.concat('');
     }
   }
 
