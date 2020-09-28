@@ -79,10 +79,11 @@ export class AppComponent {
     } else {
       let tempArray: any = [];
       let incommingMessage = this.message;
-      const numArrays = Math.round(this.message.length / 6);
+      const numArrays = Math.floor(this.message.length / 6) - 1;
       console.log(numArrays);
-      let counter = 0;
+      let counter = -1;
       while (incommingMessage !== '') {
+        counter++;
         let letter = incommingMessage.charAt(0);
         if (tempArray[counter] === null || tempArray[counter] === undefined) {
           tempArray[counter] = '';
@@ -92,12 +93,11 @@ export class AppComponent {
         }
         tempArray[counter] = `${tempArray[counter]}${letter}`;
         incommingMessage = incommingMessage.substr(1);
-        if (counter < numArrays) {
-          counter = 0;
+        if (counter > numArrays - 1) {
+          counter = -1;
         }
       }
-      console.log(tempArray);
-      this.otherEncodedMessage = tempArray.concat('');
+      this.otherEncodedMessage = tempArray.join('').trim();
     }
   }
 

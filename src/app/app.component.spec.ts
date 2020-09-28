@@ -33,5 +33,14 @@ describe('AppComponent', () => {
     expect(app.otherEncodedMessage).toEqual('debtoinevottronieio sscr etht ');
   });
 
+  it(`should decode back ditiseentestberichtvoortoon in other encoding`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.message = 'debtoinevottronieio sscr etht ';
+    app.doEncode = false;
+    app.doOtherEncoding();
+    expect(app.otherEncodedMessage).toEqual('ditiseentestberichtvoortoon');
+  });
+
 
 });
